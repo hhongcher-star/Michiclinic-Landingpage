@@ -1,0 +1,56 @@
+Package Report
+
+-----------------------------------------------------------------------------
+Document:
+Name: Hoarding.ai
+Color Mode: CMYK color
+Color Profile: U.S. Web Coated (SWOP) v2
+Ruler Units: millimeters
+Artboard Dimensions: 8399.9999 mm x 2399.9999 mm
+Show Images in Outline Mode: OFF
+Highlight Substituted Fonts: OFF
+Highlight Substituted Glyphs: OFF
+Preserve Text Editability
+Simulate Colored Paper: OFF
+
+-----------------------------------------------------------------------------
+Spot Color Objects:
+
+-----------------------------------------------------------------------------
+Missing Fonts:NONE
+
+-----------------------------------------------------------------------------
+Protected Fonts that were not packaged:NONE
+
+-----------------------------------------------------------------------------
+Fonts:
+Syne Medium (TrueType)
+Marcellus (TrueType)
+
+-----------------------------------------------------------------------------
+Embedded Fonts:
+NONE
+
+-----------------------------------------------------------------------------
+Missing Links:
+NONE
+
+-----------------------------------------------------------------------------
+Linked Images:
+
+/Users/akmal/Downloads/sunny-ng-KVIlNRoGwxk-unsplash.jpg
+Type: RGB
+Bits per Pixel: 24
+Channels: 3
+Size: 41533K, 3222 by 4400 pixels
+Dimensions: 1190.551 by 1625.83 points 
+Resolution: 194.854 by 194.854 pixels per inch
+
+
+/Users/akmal/Downloads/womanizer-toys-8oB43mw658c-unsplash.jpg
+Type: RGB
+Bits per Pixel: 24
+Channels: 3
+Size: 70312K, 6000 by 4000 pixels
+Dimensions: 1022.814 by 681.876 points 
+Resolution: 422.364 by 422.364 pixels per inch
