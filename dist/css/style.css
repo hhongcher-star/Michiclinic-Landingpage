@@ -246,17 +246,18 @@ h2{font-size:clamp(2.3rem,3.8vw,4.25rem)}
   .hero-problem-summary{grid-column:2;grid-row:2;align-self:center;margin:0;font-size:clamp(1.65rem,2.2vw,2.35rem);text-align:left}
   .hero-design-copy{grid-column:2;grid-row:2;align-self:end;margin:0 0 3.1rem;font-size:1.08rem;text-align:left}
   .hero-result-image{grid-column:2;grid-row:3;width:100%;max-width:none;margin:0 0 4rem;border-radius:.75rem;align-self:start}
-  .case-story-intro{grid-column:1;grid-row:3;align-items:flex-start;margin:0 0 4rem;text-align:left}
-  .case-story-intro p{font-size:1.15rem}
-  .case-story-video{width:min(100%,310px);margin:1.25rem 0 0}
-  .case-detail{grid-column:1/-1;width:100%;max-width:none;margin-top:3rem}
-  .case-detail blockquote{max-width:720px;margin:0 auto 2.5rem;text-align:center}
-  .case-photo-stack{display:grid;grid-template-columns:repeat(3,1fr);gap:.65rem}
+  .case-story-intro{grid-column:1/-1;grid-row:4;display:grid;grid-template-columns:minmax(240px,.62fr) minmax(0,1.38fr);gap:clamp(2rem,5vw,5rem);width:min(100%,1180px);margin:0 auto 3.5rem;align-items:start;text-align:left}
+  .case-story-intro p{font-size:1.08rem}
+  .case-story-button{margin-top:.15rem}
+  .case-story-video{width:min(100%,260px);margin:1.1rem 0 0}
+  .case-detail{grid-column:2;width:100%;max-width:none;margin:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1.25rem 2rem;align-items:start}
+  .case-detail blockquote{grid-column:1/-1;max-width:720px;margin:0 auto .3rem;text-align:left}
+  .case-photo-stack{grid-column:1;display:grid;grid-template-columns:repeat(3,1fr);gap:.45rem}
   .case-photo-stack figure,.case-photo-stack figure:nth-child(n){width:100%;align-self:auto}
   .case-photo-stack figure:before{display:none}
   .case-photo-stack figure:after{display:none}
   .case-photo-stack img{aspect-ratio:1/1;border-radius:0}
-  .case-detail-copy{max-width:720px;margin:2rem auto 0;text-align:center}
+  .case-detail-copy{grid-column:2;max-width:330px;margin:0;text-align:left}
   .vertical-note{display:none}
   .two-week-section{min-height:0;display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(2.5rem,6vw,6rem);padding-top:4.5rem;padding-bottom:4.5rem;text-align:left}
   .two-week-heading{align-self:center;max-width:470px}
