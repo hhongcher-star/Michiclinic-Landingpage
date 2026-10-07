@@ -9,7 +9,6 @@ if (siteHeader) {
   window.addEventListener('scroll', updateHeader, { passive: true });
   updateHeader();
 }
-
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
@@ -35,7 +34,7 @@ document.querySelectorAll('[data-hero-slideshow]').forEach((slideshow) => {
 });
 
 document.querySelectorAll('[data-doctor-slideshow]').forEach((slideshow) => {
-  const slides = [...slideshow.querySelectorAll('.doctor-slide')];
+  const slides = [...slideshow.querySelectorAll('.doctor-portrait-slide')];
   let activeIndex = 0;
 
   if (slides.length > 1) {
@@ -84,21 +83,3 @@ if (menuToggle && mobileMenu) {
     if (window.innerWidth > 900) closeMenu();
   });
 }
-
-document.querySelectorAll('[data-comparison]').forEach((comparison) => {
-  const range = comparison.querySelector('.comparison-range');
-  const before = comparison.querySelector('[data-before]');
-  const beforeImage = before.querySelector('img');
-  const line = comparison.querySelector('[data-line]');
-
-  const updateComparison = () => {
-    const position = `${range.value}%`;
-    beforeImage.style.width = `${comparison.clientWidth}px`;
-    before.style.width = position;
-    line.style.left = position;
-  };
-
-  range.addEventListener('input', updateComparison);
-  window.addEventListener('resize', updateComparison);
-  updateComparison();
-});
