@@ -20,6 +20,18 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 reveals.forEach((element) => revealObserver.observe(element));
 
+document.querySelectorAll('[data-scroll-autoplay]').forEach((video) => {
+  const autoplayObserver = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  }, { threshold: 0.45 });
+
+  autoplayObserver.observe(video);
+});
+
 document.querySelectorAll('[data-hero-slideshow]').forEach((slideshow) => {
   const slides = [...slideshow.querySelectorAll('.hero-slide')];
   let activeIndex = 0;
