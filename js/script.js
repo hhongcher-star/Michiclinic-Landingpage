@@ -2,8 +2,12 @@ const reveals = document.querySelectorAll('.reveal');
 const siteHeader = document.querySelector('.site-header');
 
 if (siteHeader) {
+  let isHeaderScrolled = null;
   const updateHeader = () => {
-    siteHeader.classList.toggle('is-scrolled', window.scrollY > 12);
+    const nextState = window.scrollY > 12;
+    if (nextState === isHeaderScrolled) return;
+    isHeaderScrolled = nextState;
+    siteHeader.classList.toggle('is-scrolled', nextState);
   };
 
   window.addEventListener('scroll', updateHeader, { passive: true });
