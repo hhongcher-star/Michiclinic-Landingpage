@@ -306,12 +306,12 @@ h2{font-size:clamp(2.3rem,3.8vw,4.25rem)}
   .case-story-intro .case-detail-copy p{margin-bottom:1.65rem;font-size:clamp(1.22rem,1.45vw,1.48rem);line-height:1.85}
   .case-story-intro .case-detail-copy p:first-child{font-size:clamp(1.15rem,1.3vw,1.35rem);white-space:normal}
   .vertical-note{display:none}
-  .two-week-section{min-height:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(380px,500px);grid-template-rows:auto auto;column-gap:clamp(3rem,6vw,7rem);row-gap:2rem;padding-top:3.75rem;padding-bottom:3.75rem;text-align:left;align-items:center}
+  .two-week-section{min-height:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(340px,400px);grid-template-rows:auto auto;column-gap:clamp(3rem,6vw,7rem);row-gap:2rem;padding-top:3.75rem;padding-bottom:3.75rem;text-align:left;align-items:center}
   .two-week-heading{grid-column:1;grid-row:1;align-self:end;max-width:560px}
   .two-week-heading h2{font-size:clamp(2.7rem,3.5vw,4rem);margin:0}
   .two-week-heading h2:after{margin-left:0}
   .two-week-comparison{grid-column:2;grid-row:1/3;width:100%;margin:0;gap:.65rem;align-self:center}
-  .two-week-comparison.is-single{width:100%;justify-self:center}
+  .two-week-comparison.is-single{width:100%;max-width:400px;justify-self:center}
   .two-week-comparison.is-single figure{display:block;height:auto;background:#000}
   .two-week-comparison.is-single img{display:block;width:100%;max-width:100%;height:auto;object-fit:contain}
   .two-week-comparison img{height:360px}
