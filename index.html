@@ -24,7 +24,7 @@
       <a href="#doctor">Dr Alice See</a>
       <a href="#location">诊所位置</a>
     </nav>
-    <a class="button button-small" href="https://wa.me/" target="_blank" rel="noopener">预约咨询</a>
+    <button class="button button-small" type="button" data-open-booking>预约咨询</button>
     <button class="menu-toggle" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="mobile-menu">
       <span></span>
       <span></span>
@@ -38,14 +38,14 @@
     </nav>
   </header>
 
-  <a class="promo-bar" href="https://wa.me/" target="_blank" rel="noopener" aria-label="原价 RM2,300，现在只需 RM888，通过 WhatsApp 预约">
+  <button class="promo-bar" type="button" data-open-booking aria-label="原价 RM2,300，现在只需 RM888，立即预约">
     <span class="promo-original"><s>RM2,300</s> original price</span>
     <span class="promo-divider" aria-hidden="true"></span>
     <strong>NOW ONLY RM888</strong>
     <span class="promo-arrow promo-whatsapp" aria-hidden="true">
       <img src="assets/icons/whatsapp.svg" alt="">
     </span>
-  </a>
+  </button>
 
   <main>
     <section class="hero" id="design" aria-labelledby="hero-title">
@@ -190,10 +190,10 @@
           <address><strong>A-G-09, Plaza Arkadia</strong><br>No. 3, Jalan Intisari Perdana<br>Desa ParkCity, 52200 Kuala Lumpur</address>
         </a>
         <div class="location-action">
-          <a href="https://wa.me/" target="_blank" rel="noopener">
+          <button type="button" data-open-booking>
             <span class="location-action-label">预约 Dr Alice 领取 RM888 Promo</span>
             <span class="location-action-arrow" aria-hidden="true">→</span>
-          </a>
+          </button>
         </div>
       </div>
     </section>
@@ -225,7 +225,29 @@
       </div>
     </div>
   </footer>
-  <script src="js/script.js?v=20261008-16"></script>
+
+  <div class="booking-modal" data-booking-modal aria-hidden="true">
+    <div class="booking-modal-backdrop" data-close-booking></div>
+    <section class="booking-dialog" role="dialog" aria-modal="true" aria-labelledby="booking-title">
+      <button class="booking-close" type="button" data-close-booking aria-label="关闭预约表格">×</button>
+      <p class="booking-eyebrow">RM888 SPECIAL PROMO</p>
+      <h2 id="booking-title">预约 Dr Alice</h2>
+      <p class="booking-intro">留下您的资料后，我们会带您前往 WhatsApp 完成预约。</p>
+      <form class="booking-form" data-booking-form>
+        <label for="booking-name">名字</label>
+        <input id="booking-name" name="name" type="text" autocomplete="name" placeholder="请输入您的名字" required maxlength="80">
+
+        <label for="booking-phone">电话号码</label>
+        <input id="booking-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="例如：012 345 6789" required maxlength="24">
+
+        <input name="source" type="hidden" value="Michi Clinic RM888 Promo">
+        <button class="booking-submit" type="submit">提交资料并前往 WhatsApp</button>
+        <p class="booking-status" data-booking-status role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </div>
+‘
+   <script src="js/script.js?v=20261008-16"></script>
 </body>
 </html>
 

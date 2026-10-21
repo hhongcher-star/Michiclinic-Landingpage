@@ -33,7 +33,7 @@ button,input{font:inherit}
 .site-header>.button{justify-self:end}
 .menu-toggle,.mobile-menu{display:none}
 
-.promo-bar{position:fixed;z-index:49;top:72px;left:0;display:flex;align-items:center;justify-content:center;gap:.85rem;width:100%;min-height:44px;padding:.5rem var(--page);background:var(--brown);color:var(--ivory);font-size:.82rem;line-height:1.2;box-shadow:0 8px 22px rgba(56,33,20,.18)}
+.promo-bar{position:fixed;z-index:49;top:72px;left:0;display:flex;align-items:center;justify-content:center;gap:.85rem;width:100%;min-height:44px;padding:.5rem var(--page);border:0;background:var(--brown);color:var(--ivory);font-size:.82rem;line-height:1.2;box-shadow:0 8px 22px rgba(56,33,20,.18);cursor:pointer}
 .promo-original{color:rgba(255,250,244,.72);font-family:var(--serif)}
 .promo-original s{text-decoration-thickness:1px;text-decoration-color:rgba(255,250,244,.65)}
 .promo-divider{width:1px;height:18px;background:rgba(255,255,255,.28)}
@@ -211,7 +211,7 @@ h2{font-size:clamp(2.3rem,3.8vw,4.25rem)}
 .location-address address{margin:0;font-style:normal;font-size:.9rem;line-height:1.45;text-align:left}
 .location-address strong{font-size:1.05rem}
 .location-action{margin-top:1.8rem}
-.location-action>a{display:inline-flex;align-items:center;gap:1.4rem;min-height:62px;padding:.9rem 1.4rem .9rem 2.2rem;border-radius:999px;background:var(--brown);color:var(--white);font-family:var(--serif);font-size:1.15rem;font-weight:400;letter-spacing:0;box-shadow:0 10px 28px rgba(56,33,20,.2);animation:story-button-float 2.6s ease-in-out infinite}
+.location-action>a,.location-action>button{display:inline-flex;align-items:center;gap:1.4rem;min-height:62px;padding:.9rem 1.4rem .9rem 2.2rem;border:0;border-radius:999px;background:var(--brown);color:var(--white);font-family:var(--serif);font-size:1.15rem;font-weight:400;letter-spacing:0;box-shadow:0 10px 28px rgba(56,33,20,.2);cursor:pointer;animation:story-button-float 2.6s ease-in-out infinite}
 .location-action-label{display:block;line-height:1.2;white-space:nowrap}
 .location-action-arrow{display:grid;place-items:center;width:38px;height:38px;border:1px solid rgba(255,255,255,.7);border-radius:50%}
 
@@ -252,14 +252,35 @@ h2{font-size:clamp(2.3rem,3.8vw,4.25rem)}
 .doctor-credentials div:hover{background:rgba(255,250,244,.82)}
 .location-photo:hover{transform:scale(1.012);box-shadow:0 22px 50px rgba(56,33,20,.13)}
 .footer-info-row:hover{transform:translateX(9px)}
-.button,.location-action>a{transition:background .3s ease,color .3s ease,transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s ease}
-.button:hover,.location-action>a:hover{transform:translateY(-5px);box-shadow:0 16px 34px rgba(56,33,20,.24)}
-.location-action>a:hover{animation-play-state:paused}
+.button,.location-action>a,.location-action>button{transition:background .3s ease,color .3s ease,transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s ease}
+.button:hover,.location-action>a:hover,.location-action>button:hover{transform:translateY(-5px);box-shadow:0 16px 34px rgba(56,33,20,.24)}
+.location-action>a:hover,.location-action>button:hover{animation-play-state:paused}
 .location-action-arrow,.case-story-button span{animation:arrow-breathe 1.8s ease-in-out infinite}
 .credential-icon{transition:transform .45s cubic-bezier(.2,.8,.2,1),color .35s ease}.doctor-credentials div:hover .credential-icon{color:#7e5c46;transform:translateY(-4px) scale(1.12)}
 @keyframes arrow-breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
 
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal,.hero-copy>*,.two-week-section .two-week-heading,.two-week-section .two-week-comparison figure,.two-week-section .two-week-closing,.doctor-section .doctor-intro,.doctor-section .doctor-portrait-slideshow,.doctor-section .doctor-credentials>div,.doctor-section .doctor-training,.doctor-section .doctor-message,.location-section .location-heading,.location-section .location-photo,.location-section .location-address,.location-section .location-action,.site-footer .footer-brand,.site-footer .footer-info-row,.site-footer .footer-divider,.site-footer .footer-bottom{opacity:1;filter:none;transform:none;transition:none}.hero-slide,.doctor-portrait-slide,.button,.hero-problem-card,.two-week-comparison figure,.doctor-credentials div,.location-photo,.footer-info-row{transition:none}.case-story-button,.location-action>a,.location-action-arrow,.case-story-button span{animation:none}}
+/* Appointment form modal */
+body.booking-open{overflow:hidden}
+.booking-modal{position:fixed;z-index:100;inset:0;display:grid;place-items:center;padding:1.25rem;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s ease,visibility .25s ease}
+.booking-modal.is-open{opacity:1;visibility:visible;pointer-events:auto}
+.booking-modal-backdrop{position:absolute;inset:0;background:rgba(31,17,10,.62);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px)}
+.booking-dialog{position:relative;z-index:1;width:min(100%,480px);padding:2.6rem 2.5rem 2.35rem;border-radius:1.4rem;background:#fbf8f3;box-shadow:0 28px 80px rgba(31,17,10,.32);transform:translateY(18px) scale(.98);transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+.booking-modal.is-open .booking-dialog{transform:none}
+.booking-close{position:absolute;top:1rem;right:1rem;width:38px;height:38px;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--brown);font-size:1.55rem;line-height:1;cursor:pointer}
+.booking-eyebrow{margin:0 0 .7rem;color:#9a765f;font-size:.65rem;font-weight:700;letter-spacing:.18em}
+.booking-dialog h2{font-size:clamp(2.1rem,7vw,3rem)}
+.booking-intro{margin:.65rem 0 1.6rem;color:var(--brown-soft);font-size:.9rem}
+.booking-form{display:grid;gap:.6rem}
+.booking-form label{margin-top:.45rem;font-size:.78rem;font-weight:700}
+.booking-form input{width:100%;min-height:52px;padding:.8rem 1rem;border:1px solid rgba(56,33,20,.24);border-radius:.65rem;outline:none;background:#fff;color:var(--brown);transition:border-color .2s ease,box-shadow .2s ease}
+.booking-form input:focus{border-color:var(--brown);box-shadow:0 0 0 3px rgba(56,33,20,.09)}
+.booking-submit{min-height:54px;margin-top:1rem;border:1px solid var(--brown);border-radius:999px;background:var(--brown);color:#fff;font-size:.88rem;font-weight:700;cursor:pointer}
+.booking-submit:disabled{opacity:.62;cursor:wait}
+.booking-status{min-height:1.4em;margin:.4rem 0 0;font-size:.78rem;line-height:1.5;text-align:center}
+.booking-status.is-error{color:#a0332b}
+.booking-status.is-success{color:#27713c}
+
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal,.hero-copy>*,.two-week-section .two-week-heading,.two-week-section .two-week-comparison figure,.two-week-section .two-week-closing,.doctor-section .doctor-intro,.doctor-section .doctor-portrait-slideshow,.doctor-section .doctor-credentials>div,.doctor-section .doctor-training,.doctor-section .doctor-message,.location-section .location-heading,.location-section .location-photo,.location-section .location-address,.location-section .location-action,.site-footer .footer-brand,.site-footer .footer-info-row,.site-footer .footer-divider,.site-footer .footer-bottom{opacity:1;filter:none;transform:none;transition:none}.hero-slide,.doctor-portrait-slide,.button,.hero-problem-card,.two-week-comparison figure,.doctor-credentials div,.location-photo,.footer-info-row{transition:none}.case-story-button,.location-action>a,.location-action>button,.location-action-arrow,.case-story-button span{animation:none}}
 
 @media(min-width:901px){
   :root{--page:clamp(3rem,7vw,7.5rem)}
@@ -339,7 +360,7 @@ h2{font-size:clamp(2.3rem,3.8vw,4.25rem)}
   .location-photo img{height:360px;aspect-ratio:auto;object-fit:cover}
   .location-address{grid-column:1;grid-row:2;width:100%;margin:.65rem 0 0;padding:0;background:transparent;box-shadow:none;justify-content:flex-start}
   .location-action{grid-column:1;grid-row:3;margin-top:.65rem}
-  .location-action>a{min-height:54px;padding:.75rem 1.2rem  .75rem 1.65rem;font-size:1rem}
+  .location-action>a,.location-action>button{min-height:54px;padding:.75rem 1.2rem  .75rem 1.65rem;font-size:1rem}
   .site-footer{padding:3.25rem var(--page) 2.25rem}
   .footer-inner{display:grid;grid-template-columns:.9fr 1.4fr;gap:1.5rem 5rem;width:100%;max-width:1180px;align-items:start}
   .footer-brand{grid-column:1;width:230px;margin:0}
@@ -384,7 +405,7 @@ h2{font-size:clamp(2.3rem,3.8vw,4.25rem)}
 @media(max-width:600px){
   .site-header.is-scrolled,.site-header.menu-open,.mobile-menu{backdrop-filter:none;-webkit-backdrop-filter:none}
   .reveal{filter:none}
-  .case-story-button,.location-action>a,.location-action-arrow,.case-story-button span{animation:none}
+  .case-story-button,.location-action>a,.location-action>button,.location-action-arrow,.case-story-button span{animation:none}
   .hero-offer-card{width:100%;margin:2.6rem 0 .2rem;padding:1.35rem .85rem .9rem;border-radius:1.45rem}
   .hero-offer-tab{padding:.34rem 1.3rem;font-size:.49rem;letter-spacing:.23em}
   .hero-offer-price{grid-template-columns:1fr 1px 1.18fr;gap:.7rem}
@@ -403,7 +424,8 @@ h2{font-size:clamp(2.3rem,3.8vw,4.25rem)}
   .case-narrative{text-align:center}.case-lead{margin-bottom:1.1rem}.case-narrative h2{font-size:1.65rem;margin-bottom:1.7rem}.case-narrative>p:not(.case-lead){font-size:1rem;margin-bottom:1.1rem}
   .two-week-section{text-align:center;padding-top:3.75rem;padding-bottom:4.5rem}.two-week-kicker{margin:.8rem 0 1.1rem;padding:.48rem .9rem}.two-week-heading h2{font-size:clamp(1.85rem,8vw,2.3rem);line-height:1.1;margin:0;white-space:nowrap}.two-week-heading h2:after{margin:.85rem auto 0}.two-week-intro{font-size:1rem;line-height:1.75}.two-week-comparison{grid-template-columns:1fr;width:100%;gap:1.15rem;margin-top:2rem}.two-week-comparison figure{display:grid;grid-template-columns:minmax(0,1fr) 72px;border-radius:1.15rem}.two-week-comparison img{width:100%;height:100%;aspect-ratio:1.18/1;object-fit:cover}.two-week-comparison figure:first-child img{object-position:center 35%}.two-week-comparison figcaption{flex-direction:column;gap:.35rem;padding:.6rem .2rem;background:transparent;font-size:.92rem}.two-week-comparison figcaption span{font-family:var(--serif);font-size:1.35rem;font-style:italic;letter-spacing:0}.two-week-comparison figcaption span:after{content:"";display:block;width:22px;height:1px;margin:.4rem auto 0;background:var(--brown-soft)}.two-week-comparison.is-single{display:block;width:min(100%,430px)}.two-week-comparison.is-single figure{display:block;border-radius:1rem}.two-week-comparison.is-single img{height:auto;aspect-ratio:auto;object-fit:contain}.two-week-closing{margin-top:2.2rem}.two-week-closing p,.two-week-closing strong{font-family:var(--serif);font-size:1rem;line-height:1.7}
   .doctor-section{text-align:center}.doctor-intro{margin-bottom:2rem}.doctor-intro h2{font-size:clamp(2.7rem,13vw,3.4rem);white-space:nowrap}.doctor-portrait-slideshow{width:100%;height:auto;aspect-ratio:4/5;border-radius:0}.doctor-portrait-slide{object-position:center}.doctor-credentials{grid-template-columns:repeat(2,1fr);gap:.7rem;margin:2.2rem 0}.doctor-credentials div{min-height:145px;padding:1rem .5rem}.credential-icon{width:38px;height:38px;margin-bottom:.65rem}.doctor-credentials strong{font-size:1.15rem;line-height:1.2}.doctor-credentials small{margin-top:.35rem;font-size:.72rem;line-height:1.4}.doctor-training{width:100%;border-radius:0}.doctor-training img{aspect-ratio:1/1;object-fit:cover;object-position:center}.doctor-message{margin-top:2.2rem}.doctor-message p{font-size:1.08rem;line-height:1.75;white-space:normal}
-  .location-section{text-align:center;padding:4rem var(--page)}.location-heading h2{font-size:3.3rem;line-height:.95;margin-bottom:1.5rem}.location-question{font-size:clamp(.82rem,3.8vw,.98rem);line-height:1.4;margin-bottom:1.6rem;white-space:nowrap}.location-photo{width:100%;border-radius:1.4rem}.location-photo img{aspect-ratio:4/4.7}.location-address{justify-content:flex-start;width:100%;gap:1rem;margin-top:-.55rem;padding:1rem 1.1rem;border-radius:0 0 1.25rem 1.25rem;background:rgba(245,242,237,.98);box-shadow:0 12px 30px rgba(56,33,20,.09)}.location-pin{flex-basis:54px;width:54px;height:54px}.location-pin svg{width:28px;height:28px}.location-address address{font-size:.82rem;line-height:1.4}.location-address strong{font-size:.98rem}.location-action{width:100%;margin-top:1.5rem}.location-action>a{position:relative;justify-content:center;width:100%;min-height:68px;padding:.75rem 4rem;border-radius:999px;font-size:clamp(.9rem,3.55vw,1rem);white-space:nowrap}.location-action-label{position:absolute;left:1rem;right:4.5rem;width:auto;height:auto;border:0;text-align:center}.location-action-arrow{position:absolute;right:1rem;flex:0 0 38px;width:38px;height:38px}
+  .location-section{text-align:center;padding:4rem var(--page)}.location-heading h2{font-size:3.3rem;line-height:.95;margin-bottom:1.5rem}.location-question{font-size:clamp(.82rem,3.8vw,.98rem);line-height:1.4;margin-bottom:1.6rem;white-space:nowrap}.location-photo{width:100%;border-radius:1.4rem}.location-photo img{aspect-ratio:4/4.7}.location-address{justify-content:flex-start;width:100%;gap:1rem;margin-top:-.55rem;padding:1rem 1.1rem;border-radius:0 0 1.25rem 1.25rem;background:rgba(245,242,237,.98);box-shadow:0 12px 30px rgba(56,33,20,.09)}.location-pin{flex-basis:54px;width:54px;height:54px}.location-pin svg{width:28px;height:28px}.location-address address{font-size:.82rem;line-height:1.4}.location-address strong{font-size:.98rem}.location-action{width:100%;margin-top:1.5rem}.location-action>a,.location-action>button{position:relative;justify-content:center;width:100%;min-height:68px;padding:.75rem 4rem;border-radius:999px;font-size:clamp(.9rem,3.55vw,1rem);white-space:nowrap}.location-action-label{position:absolute;left:1rem;right:4.5rem;width:auto;height:auto;border:0;text-align:center}.location-action-arrow{position:absolute;right:1rem;flex:0 0 38px;width:38px;height:38px}
+  .booking-dialog{padding:2.35rem 1.35rem 1.65rem;border-radius:1.15rem}
   .site-footer{padding-top:3.5rem}.footer-brand{width:220px;margin-bottom:2.5rem}.footer-info{max-width:330px;gap:1.65rem}.footer-icon{flex-basis:54px;width:54px;height:54px}.footer-info-row{gap:1rem}.footer-info-row strong{font-size:.92rem}.footer-info-row small{font-size:.7rem}.footer-divider{margin-top:2.7rem}.footer-bottom{font-size:.68rem}
 }
 

@@ -99,3 +99,78 @@ if (menuToggle && mobileMenu) {
     if (window.innerWidth > 900) closeMenu();
   });
 }
+
+const GOOGLE_SHEET_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwhU8DKN6VwziPEAcJjFxcyN7Tl9q9_V6Gx67xiloD1uC-RDXhptK-ZMUN8A0FhT-UwLA/exec';
+const bookingModal = document.querySelector('[data-booking-modal]');
+const bookingForm = document.querySelector('[data-booking-form]');
+const bookingStatus = document.querySelector('[data-booking-status]');
+const bookingName = document.querySelector('#booking-name');
+
+if (bookingModal && bookingForm && bookingStatus) {
+  const openBooking = () => {
+    bookingModal.classList.add('is-open');
+    bookingModal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('booking-open');
+    window.setTimeout(() => bookingName?.focus(), 120);
+  };
+
+  const closeBooking = () => {
+    bookingModal.classList.remove('is-open');
+    bookingModal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('booking-open');
+  };
+
+  document.querySelectorAll('[data-open-booking]').forEach((button) => {
+    button.addEventListener('click', openBooking);
+  });
+
+  bookingModal.querySelectorAll('[data-close-booking]').forEach((button) => {
+    button.addEventListener('click', closeBooking);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && bookingModal.classList.contains('is-open')) closeBooking();
+  });
+
+  bookingForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!bookingForm.reportValidity()) return;
+
+    bookingStatus.className = 'booking-status';
+    if (!GOOGLE_SHEET_WEB_APP_URL) {
+      bookingStatus.textContent = '表格已准备好，创建 Google Sheet 后即可启用提交。';
+      bookingStatus.classList.add('is-error');
+      return;
+    }
+
+    const submitButton = bookingForm.querySelector('.booking-submit');
+    const formData = new FormData(bookingForm);
+    const customerName = String(formData.get('name') || '').trim();
+    const customerPhone = String(formData.get('phone') || '').trim();
+    formData.append('submittedAt', new Date().toISOString());
+    submitButton.disabled = true;
+    submitButton.textContent = '提交中…';
+    bookingStatus.textContent = '';
+
+    try {
+      await fetch(GOOGLE_SHEET_WEB_APP_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: formData
+      });
+      bookingForm.reset();
+      bookingStatus.textContent = '资料已提交，正在打开 WhatsApp…';
+      bookingStatus.classList.add('is-success');
+      const whatsappMessage = `您好，我想预约 Dr Alice 的 RM888 Promo。\n名字：${customerName}\n电话号码：${customerPhone}`;
+      window.setTimeout(() => {
+        window.location.href = `https://wa.me/60143912188?text=${encodeURIComponent(whatsappMessage)}`;
+      }, 700);
+    } catch (error) {
+      bookingStatus.textContent = '暂时无法提交，请稍后再试或通过 WhatsApp 联系我们。';
+      bookingStatus.classList.add('is-error');
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = '提交资料并前往 WhatsApp';
+    }
+  });
+}
