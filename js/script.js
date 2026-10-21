@@ -147,7 +147,11 @@ if (bookingModal && bookingForm && bookingStatus) {
     const formData = new FormData(bookingForm);
     const customerName = String(formData.get('name') || '').trim();
     const customerPhone = String(formData.get('phone') || '').trim();
-    formData.append('submittedAt', new Date().toISOString());
+    const submissionData = new URLSearchParams({
+      name: customerName,
+      phone: customerPhone,
+      submittedAt: new Date().toISOString()
+    });
     submitButton.disabled = true;
     submitButton.textContent = '提交中…';
     bookingStatus.textContent = '';
@@ -156,12 +160,15 @@ if (bookingModal && bookingForm && bookingStatus) {
       await fetch(GOOGLE_SHEET_WEB_APP_URL, {
         method: 'POST',
         mode: 'no-cors',
-        body: formData
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+        },
+        body: submissionData.toString()
       });
       bookingForm.reset();
       bookingStatus.textContent = '资料已提交，正在打开 WhatsApp…';
       bookingStatus.classList.add('is-success');
-      const whatsappMessage = `您好，我想预约 Dr Alice 的 RM888 Promo。\n名字：${customerName}\n电话号码：${customerPhone}`;
+      const whatsappMessage = '您好，我想预约 Dr Alice 的 RM888 Promo。';
       window.setTimeout(() => {
         window.location.href = `https://wa.me/60143912188?text=${encodeURIComponent(whatsappMessage)}`;
       }, 700);
